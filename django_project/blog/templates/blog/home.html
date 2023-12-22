@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% if title %}
+    <title>
+        Django 블로그 - {{ title }}
+    </title>
+    {% else %}
+    <title>
+        Django 블로그
+    </title>
+    {% endif %}
+</head>
+
+<body>
+    {% for post in posts %} <!-- context["posts"] -->
+    <h1>{{ post.title }}</h1>
+    <p>글쓴이: {{ post.author }} 작성 시각: {{ post.date_posted }}</p>
+    <p>{{ post.content }}</p>
+    {% endfor %}
+</body>
+
+</html>
