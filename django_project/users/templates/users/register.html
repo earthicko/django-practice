@@ -1,20 +1,22 @@
 {% extends "blog/base.html" %}
 {% block content %}
-<div class="content-section">
+  <div class="content-section">
     <form method="POST">
-        {% csrf_token %}
-        <fieldset class="form-group">
-            <legend class="border-bottom mb-4">지금 가입하세요</legend>
-            {{ form }} <!-- UserCreationForm()으로 받아온 폼 그대로 -->
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">지금 가입하세요</legend>
+        {{ form }}
+          <!-- UserCreationForm()으로 받아온 폼 그대로 -->
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">가입</button>
+          <button class="btn btn-outline-info" type="submit">가입</button>
         </div>
-    </form>
-    <div class="border-top pt-3">
+      </form>
+      <div class="border-top pt-3">
         <small class="text-muted">
-            이미 계정이 있습니까? <a class="ml-2" href="#">회원가입</a>
+          이미 계정이 있습니까?
+          <a class="ml-2" href="#">회원가입</a>
         </small>
+      </div>
     </div>
-</div>
-{% endblock content %}
+  {% endblock content %}
