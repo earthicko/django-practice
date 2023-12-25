@@ -5,8 +5,8 @@
       {% csrf_token %}
       <fieldset class="form-group">
         <legend class="border-bottom mb-4">지금 가입하세요</legend>
-        {{ form }}
-          <!-- UserCreationForm()으로 받아온 폼 그대로 -->
+        {{ form.as_p }}
+          <!-- UserCreationForm()으로 받아온 폼 그대로, as paragraph -->
         </fieldset>
         <div class="form-group">
           <button class="btn btn-outline-info" type="submit">가입</button>
