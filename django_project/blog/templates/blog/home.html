@@ -10,7 +10,8 @@
           <small class="text-muted">{{ post.date_posted|date:"Y-m-d" }}</small>
         </div>
         <h2>
-          <a class="article-title" href="#">{{ post.title }}</a>
+          <a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a>
+          <!-- post-detail 이름을 가진 url에 post.id를 파라미터로 전달 -->
         </h2>
         <p class="article-content">{{ post.content }}</p>
       </div>

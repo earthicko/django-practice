@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% block content %}
+  <div class="content-section">
+    <form method="POST">
+      {% csrf_token %}
+      <fieldset class="form-group">
+        <legend class="border-bottom mb-4">게시글 삭제</legend>
+        <h2>정말로 게시글 "{{ object.title }}"을 삭제하시겠습니까?</h2>
+      </fieldset>
+      <div class="form-group">
+        <button class="btn btn-outline-danger" type="submit">삭제</button>
+        <a class="btn btn-outline-secondary" href="{% url 'post-detail' object.id %}">취소</a>
+      </div>
+    </form>
+  </div>
+{% endblock content %}
