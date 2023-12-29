@@ -1,6 +1,9 @@
+from typing import Any
+from django.db.models.query import QuerySet
 from django.forms.models import BaseModelForm
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.models import User
 from django.views.generic import (
     ListView,
     DetailView,
@@ -10,6 +13,9 @@ from django.views.generic import (
 )
 from django.http import HttpResponse
 from .models import Post
+
+
+POSTS_PER_PAGE = 5
 
 
 def home(request):
@@ -22,6 +28,18 @@ class PostListView(ListView):
     template_name = "blog/home.html"  # <app>/<model>_<view type>.html
     context_object_name = "posts"  # def home()에서 사용된 key와 동일
     ordering = ["-date_posted"]  # Post 모델의 애트리뷰트 이름
+    paginate_by = POSTS_PER_PAGE
+
+
+class UserPostListView(ListView):
+    model = Post
+    template_name = "blog/user_posts.html"
+    context_object_name = "posts"
+    paginate_by = POSTS_PER_PAGE
+
+    def get_queryset(self) -> QuerySet[Any]:
+        user = get_object_or_404(User, username=self.kwargs.get("username"))
+        return Post.objects.filter(author=user).order_by("-date_posted")
 
 
 class PostDetailView(DetailView):
